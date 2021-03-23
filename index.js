@@ -43,7 +43,7 @@ export default class NoMessageDelete extends Plugin {
 	  } catch (e) {
 		console.log('Better Message Deletion: Setup failed, retrying...');
 		console.log(e)
-		return setTimeout(this.start, 3000);
+		return setTimeout(this.start, 5000);
 	}
 	
 	index = deleteMessage._orderedActionHandlers.MESSAGE_DELETE.indexOf(getWantedHandler(deleteMessage));
