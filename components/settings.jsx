@@ -40,4 +40,9 @@ export default class Settings extends Component {
       </>
     );
   }
+
+  get (setting) {
+	const { getSetting } = this.props;
+	return getSetting(setting)
+  }
 }
