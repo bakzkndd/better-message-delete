@@ -25,7 +25,7 @@ const styleMessage = async ({ id, deletedMessageMessage }) => {
   el.style.backgroundColor = 'rgba(240, 71, 71, 0.1)';
   el.getElementsByClassName('contents-2mQqc9')[0].getElementsByClassName('markup-2BOw-j messageContent-2qWWxC')[0].innerHTML = deletedMessageMessage || "This message has been deleted"
 
-  setTimeout(function() {original.actionHandler(obj)}, 60000)
+  setTimeout(function() {original.actionHandler(id)}, 60000)
 };
 
 const removeMessage = async ({ id }) => {
