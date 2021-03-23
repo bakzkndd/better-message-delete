@@ -9,3 +9,9 @@ Preview:
 # How to install:
 Vizality: Open a CMD/Powershell/Terminal/Gitbash window in the Plugin folder and use:
  `git clone https://github.com/bakzkndd/no-message-delete/`
+
+
+# Note
+This is NOT a message logger. All deleted messages are temporarily shown in the client until reload or close. Messages do not get logged in any place.
+Messages deleted using bulk delete are NOT SHOWN. 
+This plugin is only VISUAL and once again does NOT log.
