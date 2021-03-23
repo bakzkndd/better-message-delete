@@ -40,18 +40,30 @@ export default class NoMessageDelete extends Plugin {
 	index = deleteMessage._orderedActionHandlers.MESSAGE_DELETE.indexOf(getWantedHandler(deleteMessage));
 
 	deleteMessage._orderedActionHandlers.MESSAGE_DELETE[index] = {
-      actionHandler: (obj) => {
-      	// console.log(obj);
+    actionHandler: (obj) => {
+      // console.log(obj);
 
-        if (deleted.find((x) => x.id === obj.id)) { return; }
+      if (deleted.find((x) => x.id === obj.id)) { return; }
       
-        deleted.push(obj);
+      deleted.push(obj);
 
-        styleMessage(obj);
-      },
+      styleMessage(obj);
+    },
 
-      storeDidChange: function() { }
-    };
+    storeDidChange: function() { }
+  };
+
+  deleteMessage._orderedActionHandlers.CHANNEL_SELECT.push({
+    actionHandler: (obj) => {
+      for (let e of document.getElementsByClassName('gm-deleted-message')) {
+        styleMessage(e.id);
+      }
+
+      
+    },
+
+    storeDidChange: function() { }
+  })
 
 	console.log('Better Message Deletion: Ready');
   }
@@ -63,6 +75,9 @@ export default class NoMessageDelete extends Plugin {
       e.remove();
     }
 
-    getModule([ 'register' ])._orderedActionHandlers.MESSAGE_DELETE[index] = original;
+    let deleteMessage = getModule([ 'register' ])
+    deleteMessage._orderedActionHandlers.MESSAGE_DELETE[index] = original;
+    index = deleteMessage._orderedActionHandlers.CHANNEL_SELECT.indexOf(deleteMessage._orderedActionHandlers.CHANNEL_SELECT.find((x) => x.actionHandler.toString().includes('gm-deleted-message')));
+    deleteMessage._orderedActionHandlers.CHANNEL_SELECT.splice(index, 1)
   }
 }
