@@ -25,21 +25,21 @@ const styleMessage = async ({ id }) => {
   el.getElementsByClassName('contents-2mQqc9')[0].getElementsByClassName('markup-2BOw-j messageContent-2qWWxC')[0].innerHTML = Plugin.settings.get('deleted-message-message',) || "This message has been deleted"
 };
 
+const removeMessage = async ({ id }) => {
+  let el = document.getElementById(`chat-messages-${id}`);
+  if (!el) return;
+  
+  if (!el.classList.contains('gm-deleted-message')) return;
+
+  el.remove()
+};
+
 export default class NoMessageDelete extends Plugin {
   async start () {
 	const deleteMessage = await getModule([ 'register' ])
 
 	try {
 		original = getWantedHandler(deleteMessage);
-    deleteMessage._orderedActionHandlers.CHANNEL_CREATE.push({
-      actionHandler: (obj) => {
-        for (let e of document.getElementsByClassName('gm-deleted-message')) {
-          styleMessage(e.id);
-        }
-      },
-  
-      storeDidChange: function() { }
-    })
 	  } catch (e) {
 		console.log('Better Message Deletion: Setup failed, retrying...');
 		console.log(e)
@@ -57,6 +57,8 @@ export default class NoMessageDelete extends Plugin {
       deleted.push(obj);
 
       styleMessage(obj);
+
+      setTimeout(removeMessage(obj), 60000)
     },
 
     storeDidChange: function() { }
@@ -74,7 +76,5 @@ export default class NoMessageDelete extends Plugin {
 
     let deleteMessage = getModule([ 'register' ])
     deleteMessage._orderedActionHandlers.MESSAGE_DELETE[index] = original;
-    index = deleteMessage._orderedActionHandlers.CHANNEL_CREATE.indexOf(deleteMessage._orderedActionHandlers.CHANNEL_CREATE.find((x) => x.actionHandler.toString().includes('gm-deleted-message')));
-    deleteMessage._orderedActionHandlers.CHANNEL_CREATE.splice(index, 1)
   }
 }
