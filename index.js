@@ -31,7 +31,7 @@ export default class NoMessageDelete extends Plugin {
 	try {
 		original = getWantedHandler(deleteMessage);
 	  } catch (e) {
-		console.log('No Message Deletion: Setup failed, retrying...');
+		console.log('Better Message Deletion: Setup failed, retrying...');
 		console.log(e)
 		return setTimeout(this.start, 3000);
 	}
@@ -52,7 +52,7 @@ export default class NoMessageDelete extends Plugin {
       storeDidChange: function() { }
     };
 
-	console.log('No Message Deletion: Ready');
+	console.log('Better Message Deletion: Ready');
   }
 
   stop () {
