@@ -1,6 +1,7 @@
 import { Plugin } from '@vizality/entities';
 import { patch, unpatch } from '@vizality/patcher';
 import { getModule } from '@vizality/src/core/modules/webpack';
+const Settings = require("./components/Settings")
 
 const getWantedHandler = (mod) => mod._orderedActionHandlers.MESSAGE_DELETE.find((x) => x.actionHandler.toString().includes('revealedMessageId'));
 let deleted = [];
@@ -22,7 +23,7 @@ const styleMessage = async ({ id, plugin }) => {
   
   el.classList.add('gm-deleted-message');
   el.style.backgroundColor = 'rgba(240, 71, 71, 0.1)';
-  el.getElementsByClassName('contents-2mQqc9')[0].getElementsByClassName('markup-2BOw-j messageContent-2qWWxC')[0].innerHTML = Plugin.settings.get('deleted-message-message',) || "This message has been deleted"
+  el.getElementsByClassName('contents-2mQqc9')[0].getElementsByClassName('markup-2BOw-j messageContent-2qWWxC')[0].innerHTML = Settings.get('deleted-message-message',) || "This message has been deleted"
 };
 
 const removeMessage = async ({ id }) => {
@@ -45,6 +46,8 @@ export default class NoMessageDelete extends Plugin {
 		console.log(e)
 		return setTimeout(this.start, 5000);
 	}
+
+  this.registerSettings(Settings)
 	
 	index = deleteMessage._orderedActionHandlers.MESSAGE_DELETE.indexOf(getWantedHandler(deleteMessage));
 
