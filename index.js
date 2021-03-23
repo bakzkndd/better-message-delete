@@ -14,19 +14,18 @@ const run = () => {
   }
 };
 
+const styleMessage = async ({ id }) => {
+  let el = document.getElementById(`chat-messages-${id}`);
+  if (!el) return;
+  
+  if (el.classList.contains('gm-deleted-message')) return;
+  
+  el.classList.add('gm-deleted-message');
+  el.style.backgroundColor = 'rgba(240, 71, 71, 0.1)';
+  el.getElementsByClassName('contents-2mQqc9')[0].getElementsByClassName('markup-2BOw-j messageContent-2qWWxC')[0].innerHTML = Plugin.settings.get('deleted-message-message',) || "This message has been deleted"
+};
+
 export default class NoMessageDelete extends Plugin {
-
-  styleMessage = async ({ id }) => {
-    let el = document.getElementById(`chat-messages-${id}`);
-    if (!el) return;
-    
-    if (el.classList.contains('gm-deleted-message')) return;
-    
-    el.classList.add('gm-deleted-message');
-    el.style.backgroundColor = 'rgba(240, 71, 71, 0.1)';
-    el.getElementsByClassName('contents-2mQqc9')[0].getElementsByClassName('markup-2BOw-j messageContent-2qWWxC')[0].innerHTML = this.settings.get('deleted-message-message', false) || "This message has been deleted"
-  };
-
   async start () {
 	const deleteMessage = await getModule([ 'register' ])
 
@@ -48,7 +47,7 @@ export default class NoMessageDelete extends Plugin {
       
         deleted.push(obj);
 
-        this.styleMessage(obj);
+        styleMessage(obj);
       },
 
       storeDidChange: function() { }
