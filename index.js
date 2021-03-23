@@ -24,6 +24,8 @@ const styleMessage = async ({ id }) => {
   el.classList.add('gm-deleted-message');
   el.style.backgroundColor = 'rgba(240, 71, 71, 0.1)';
   el.getElementsByClassName('contents-2mQqc9')[0].getElementsByClassName('markup-2BOw-j messageContent-2qWWxC')[0].innerHTML = Plugin.settings.get('deleted-message-message',) || "This message has been deleted"
+
+  setTimeout(function() {original.actionHandler(obj)}, 60000)
 };
 
 const removeMessage = async ({ id }) => {
@@ -58,8 +60,6 @@ export default class NoMessageDelete extends Plugin {
       deleted.push(obj);
 
       styleMessage(obj);
-
-      setTimeout(function() {original.actionHandler(obj)}, 60000)
     },
 
     storeDidChange: function() { }
