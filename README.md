@@ -1,6 +1,6 @@
-![Vizality Addon Banner (Community) (Community)](https://user-images.githubusercontent.com/50497725/112078709-2a329e80-8b7f-11eb-9f3f-cb5a48714a1d.png)
+![Vizality Addon Banner (Community) (Community) (1)](https://user-images.githubusercontent.com/50497725/112079758-04a69480-8b81-11eb-8010-995e6bdf54ab.png)
 
-# no-message-delete
+# better-message-delete
 Instead of hiding deleted messages it gives them a red background.
 
 Preview:
@@ -8,7 +8,7 @@ Preview:
 
 # How to install:
 Vizality: Open a CMD/Powershell/Terminal/Gitbash window in the Plugin folder and use:
- `git clone https://github.com/bakzkndd/no-message-delete/`
+ `git clone https://github.com/bakzkndd/better-message-delete/`
 
 
 # Note
