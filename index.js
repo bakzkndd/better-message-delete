@@ -31,7 +31,7 @@ export default class NoMessageDelete extends Plugin {
 
 	try {
 		original = getWantedHandler(deleteMessage);
-    deleteMessage._orderedActionHandlers.CHANNEL_SELECT.push({
+    deleteMessage._orderedActionHandlers.CHANNEL_CREATE.push({
       actionHandler: (obj) => {
         for (let e of document.getElementsByClassName('gm-deleted-message')) {
           styleMessage(e.id);
@@ -74,7 +74,7 @@ export default class NoMessageDelete extends Plugin {
 
     let deleteMessage = getModule([ 'register' ])
     deleteMessage._orderedActionHandlers.MESSAGE_DELETE[index] = original;
-    index = deleteMessage._orderedActionHandlers.CHANNEL_SELECT.indexOf(deleteMessage._orderedActionHandlers.CHANNEL_SELECT.find((x) => x.actionHandler.toString().includes('gm-deleted-message')));
-    deleteMessage._orderedActionHandlers.CHANNEL_SELECT.splice(index, 1)
+    index = deleteMessage._orderedActionHandlers.CHANNEL_CREATE.indexOf(deleteMessage._orderedActionHandlers.CHANNEL_CREATE.find((x) => x.actionHandler.toString().includes('gm-deleted-message')));
+    deleteMessage._orderedActionHandlers.CHANNEL_CREATE.splice(index, 1)
   }
 }
