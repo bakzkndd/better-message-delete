@@ -23,7 +23,7 @@ const styleMessage = async ({ id }) => {
   el.classList.add('gm-deleted-message');
   el.style.backgroundColor = 'rgba(240, 71, 71, 0.1)';
   console.log(el)
-  //el['contents-2mQqc9']['markup-2BOw-j messageContent-2qWWxC'] = "This message has been deleted"
+  el.getElementsByClassName('contents-2mQqc9').getElementsByClassName('markup-2BOw-j messageContent-2qWWxC').innerHTML = "This message has been deleted"
 };
 
 export default class NoMessageDelete extends Plugin {
