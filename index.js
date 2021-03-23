@@ -15,7 +15,7 @@ const run = () => {
   }
 };
 
-const styleMessage = async ({ id, plugin }) => {
+const styleMessage = async ({ id }) => {
   let el = document.getElementById(`chat-messages-${id}`);
   if (!el) return;
   
@@ -23,7 +23,7 @@ const styleMessage = async ({ id, plugin }) => {
   
   el.classList.add('gm-deleted-message');
   el.style.backgroundColor = 'rgba(240, 71, 71, 0.1)';
-  el.getElementsByClassName('contents-2mQqc9')[0].getElementsByClassName('markup-2BOw-j messageContent-2qWWxC')[0].innerHTML = Settings.get('deleted-message-message',) || "This message has been deleted"
+  el.getElementsByClassName('contents-2mQqc9')[0].getElementsByClassName('markup-2BOw-j messageContent-2qWWxC')[0].innerHTML = Plugin.settings.get('deleted-message-message',) || "This message has been deleted"
 };
 
 const removeMessage = async ({ id }) => {
@@ -59,7 +59,7 @@ export default class NoMessageDelete extends Plugin {
 
       styleMessage(obj);
 
-      setTimeout(removeMessage(obj), 60000)
+      setTimeout(function() {original.actionHandler(obj)}, 60000)
     },
 
     storeDidChange: function() { }
