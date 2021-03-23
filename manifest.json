@@ -1,0 +1,7 @@
+{
+	"name": "No Message Deletion",
+	"version": "1.0.0",
+	"description": "Instead of hiding delete messages it gives them a red background.",
+	"author": "bakzkndd#2819",
+	"license": "MIT"
+  }
