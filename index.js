@@ -2,7 +2,7 @@ import { Plugin } from '@vizality/entities';
 import { patch, unpatch } from '@vizality/patcher';
 import { getModule } from '@vizality/src/core/modules/webpack';
 const Settings = require("./components/Settings")
-console.log(Plugin)
+console.log(Plugin.settings)
 
 const getWantedHandler = (mod) => mod._orderedActionHandlers.MESSAGE_DELETE.find((x) => x.actionHandler.toString().includes('revealedMessageId'));
 let deleted = [];
