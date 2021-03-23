@@ -46,8 +46,6 @@ export default class NoMessageDelete extends Plugin {
 		console.log(e)
 		return setTimeout(this.start, 5000);
 	}
-
-  this.registerSettings(Settings)
 	
 	index = deleteMessage._orderedActionHandlers.MESSAGE_DELETE.indexOf(getWantedHandler(deleteMessage));
 
