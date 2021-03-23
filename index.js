@@ -31,6 +31,15 @@ export default class NoMessageDelete extends Plugin {
 
 	try {
 		original = getWantedHandler(deleteMessage);
+    deleteMessage._orderedActionHandlers.CHANNEL_SELECT.push({
+      actionHandler: (obj) => {
+        for (let e of document.getElementsByClassName('gm-deleted-message')) {
+          styleMessage(e.id);
+        }
+      },
+  
+      storeDidChange: function() { }
+    })
 	  } catch (e) {
 		console.log('Better Message Deletion: Setup failed, retrying...');
 		console.log(e)
@@ -52,18 +61,6 @@ export default class NoMessageDelete extends Plugin {
 
     storeDidChange: function() { }
   };
-
-  deleteMessage._orderedActionHandlers.CHANNEL_SELECT.push({
-    actionHandler: (obj) => {
-      for (let e of document.getElementsByClassName('gm-deleted-message')) {
-        styleMessage(e.id);
-      }
-
-      
-    },
-
-    storeDidChange: function() { }
-  })
 
 	console.log('Better Message Deletion: Ready');
   }
